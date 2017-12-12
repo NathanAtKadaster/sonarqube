@@ -17,27 +17,27 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-// @flow
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router';
 import GlobalFooterSonarCloud from './GlobalFooterSonarCloud';
 import GlobalFooterBranding from './GlobalFooterBranding';
 import { translate, translateWithParameters } from '../../helpers/l10n';
 
-/*::
-type Props = {
-  hideLoggedInInfo?: boolean,
-  productionDatabase: boolean,
-  onSonarCloud?: { value: string },
-  sonarqubeVersion?: string
-};
-*/
+interface Props {
+  hideLoggedInInfo?: boolean;
+  productionDatabase: boolean;
+  onSonarCloud?: { value: string };
+  sonarqubeVersion?: string;
+}
 
-export default function GlobalFooter(
-  { hideLoggedInInfo, productionDatabase, onSonarCloud, sonarqubeVersion } /*: Props */
-) {
+export default function GlobalFooter({
+  hideLoggedInInfo,
+  productionDatabase,
+  onSonarCloud,
+  sonarqubeVersion
+}: Props) {
   if (onSonarCloud && onSonarCloud.value === 'true') {
-    return <GlobalFooterSonarCloud hideLoggedInInfo={hideLoggedInInfo} />;
+    return <GlobalFooterSonarCloud />;
   }
 
   return (
