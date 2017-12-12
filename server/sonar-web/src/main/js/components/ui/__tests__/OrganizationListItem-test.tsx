@@ -1,6 +1,6 @@
 /*
  * SonarQube
- * Copyright (C) 2009-2016 SonarSource SA
+ * Copyright (C) 2009-2017 SonarSource SA
  * mailto:contact AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -19,18 +19,14 @@
  */
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { NoFavoriteProjects } from '../NoFavoriteProjects';
+import OrganizationListItem from '../OrganizationListItem';
 
 it('renders', () => {
-  expect(shallow(<NoFavoriteProjects onSonarCloud={false} organizations={[]} />)).toMatchSnapshot();
-});
-
-it('renders for SonarCloud', () => {
-  const organizations = [
-    { isAdmin: true, key: 'org1', name: 'org1', projectVisibility: 'public' },
-    { isAdmin: false, key: 'org2', name: 'org2', projectVisibility: 'public' }
-  ];
   expect(
-    shallow(<NoFavoriteProjects onSonarCloud={true} organizations={organizations} />)
+    shallow(
+      <OrganizationListItem
+        organization={{ isAdmin: true, key: 'org', name: 'org', projectVisibility: 'public' }}
+      />
+    )
   ).toMatchSnapshot();
 });

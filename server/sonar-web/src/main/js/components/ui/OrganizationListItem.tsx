@@ -18,24 +18,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { IconProps } from './types';
+import { Organization } from '../../app/types';
+import OrganizationLink from './OrganizationLink';
+import OrganizationAvatar from '../common/OrganizationAvatar';
+import { translate } from '../../helpers/l10n';
 
-export default function DropdownIcon({ className, fill = 'currentColor', size = 16 }: IconProps) {
+interface Props {
+  organization: Organization;
+}
+
+export default function OrganizationListItem({ organization }: Props) {
   return (
-    <svg
-      className={className}
-      width={size / 16 * 7}
-      height={size}
-      viewBox="0 0 7 16"
-      version="1.1"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlSpace="preserve">
-      <g transform="matrix(0.0273438,0,0,0.0273438,-6.4e-06,2.65625)">
-        <path
-          style={{ fill }}
-          d="M256,176C256,180.333 254.417,184.083 251.25,187.25L139.25,299.25C136.083,302.417 132.333,304 128,304C123.667,304 119.917,302.417 116.75,299.25L4.75,187.25C1.583,184.083 0,180.333 0,176C0,171.667 1.583,167.917 4.75,164.75C7.917,161.583 11.667,160 16,160L240,160C244.333,160 248.083,161.583 251.25,164.75C254.417,167.917 256,171.667 256,176Z"
-        />
-      </g>
-    </svg>
+    <li>
+      <OrganizationLink className="dropdown-item-flex" organization={organization}>
+        <div>
+          <OrganizationAvatar organization={organization} small={true} />
+          <span className="spacer-left">{organization.name}</span>
+        </div>
+        {organization.isAdmin && (
+          <span className="outline-badge spacer-left">{translate('admin')}</span>
+        )}
+      </OrganizationLink>
+    </li>
   );
 }
