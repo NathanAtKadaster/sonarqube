@@ -27,14 +27,13 @@ exports[`render 1`] = `
       className="divider"
     />
     <li>
-      <Link
+      <a
         className="js-new-organization"
-        onlyActiveOnIndex={false}
-        style={Object {}}
-        to="/account/organizations/create"
+        href="#"
+        onClick={[Function]}
       >
         my_account.create_new_organization
-      </Link>
+      </a>
     </li>
   </ul>
 </li>

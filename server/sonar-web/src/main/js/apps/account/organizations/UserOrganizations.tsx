@@ -20,8 +20,8 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import OrganizationsList from './OrganizationsList';
+import CreateOrganizationForm from './CreateOrganizationForm';
 import { translate } from '../../../helpers/l10n';
 import { fetchIfAnyoneCanCreateOrganizations } from './actions';
 import { getAppState, getMyOrganizations, getGlobalSettingValue } from '../../../store/rootReducer';
@@ -37,17 +37,16 @@ interface DispatchProps {
   fetchIfAnyoneCanCreateOrganizations: () => Promise<void>;
 }
 
-interface Props extends StateProps, DispatchProps {
-  children?: React.ReactNode;
-}
+interface Props extends StateProps, DispatchProps {}
 
 interface State {
+  createOrganization: boolean;
   loading: boolean;
 }
 
 class UserOrganizations extends React.PureComponent<Props, State> {
   mounted: boolean;
-  state: State = { loading: true };
+  state: State = { createOrganization: false, loading: true };
 
   componentDidMount() {
     this.mounted = true;
@@ -64,6 +63,20 @@ class UserOrganizations extends React.PureComponent<Props, State> {
     }
   };
 
+  openCreateOrganizationForm = () => this.setState({ createOrganization: true });
+
+  closeCreateOrganizationForm = () => this.setState({ createOrganization: false });
+
+  handleCreateClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.currentTarget.blur();
+    this.openCreateOrganizationForm();
+  };
+
+  handleCreate = () => {
+    this.closeCreateOrganizationForm();
+  };
+
   render() {
     const anyoneCanCreate =
       this.props.anyoneCanCreate != null && this.props.anyoneCanCreate.value === 'true';
@@ -78,9 +91,7 @@ class UserOrganizations extends React.PureComponent<Props, State> {
           <h2 className="page-title">{translate('my_account.organizations')}</h2>
           {canCreateOrganizations && (
             <div className="page-actions">
-              <Link to="/account/organizations/create" className="button">
-                {translate('create')}
-              </Link>
+              <button onClick={this.handleCreateClick}>{translate('create')}</button>
             </div>
           )}
           {this.props.organizations.length > 0 ? (
@@ -100,7 +111,12 @@ class UserOrganizations extends React.PureComponent<Props, State> {
           <OrganizationsList organizations={this.props.organizations} />
         )}
 
-        {this.props.children}
+        {this.state.createOrganization && (
+          <CreateOrganizationForm
+            onClose={this.closeCreateOrganizationForm}
+            onCreate={this.handleCreate}
+          />
+        )}
       </div>
     );
   }

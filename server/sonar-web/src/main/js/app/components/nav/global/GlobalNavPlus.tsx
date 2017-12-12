@@ -19,7 +19,8 @@
  */
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { Link } from 'react-router';
+import * as PropTypes from 'prop-types';
+import CreateOrganizationForm from '../../../../apps/account/organizations/CreateOrganizationForm';
 import PlusIcon from '../../../../components/icons-components/PlusIcon';
 import Dropdown from '../../../../components/controls/Dropdown';
 import { translate } from '../../../../helpers/l10n';
@@ -28,10 +29,38 @@ interface Props {
   openOnboardingTutorial: () => void;
 }
 
-export default class GlobalNavPlus extends React.PureComponent<Props> {
+interface State {
+  createOrganization: boolean;
+}
+
+export default class GlobalNavPlus extends React.PureComponent<Props, State> {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  constructor(props: Props) {
+    super(props);
+    this.state = { createOrganization: false };
+  }
+
   handleNewProjectClick = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     this.props.openOnboardingTutorial();
+  };
+
+  openCreateOrganizationForm = () => this.setState({ createOrganization: true });
+
+  closeCreateOrganizationForm = () => this.setState({ createOrganization: false });
+
+  handleNewOrganizationClick = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    event.currentTarget.blur();
+    this.openCreateOrganizationForm();
+  };
+
+  handleCreateOrganization = ({ key }: { key: string }) => {
+    this.closeCreateOrganizationForm();
+    this.context.router.push(`/organizations/${key}`);
   };
 
   render() {
@@ -50,11 +79,20 @@ export default class GlobalNavPlus extends React.PureComponent<Props> {
               </li>
               <li className="divider" />
               <li>
-                <Link className="js-new-organization" to="/account/organizations/create">
+                <a
+                  className="js-new-organization"
+                  href="#"
+                  onClick={this.handleNewOrganizationClick}>
                   {translate('my_account.create_new_organization')}
-                </Link>
+                </a>
               </li>
             </ul>
+            {this.state.createOrganization && (
+              <CreateOrganizationForm
+                onClose={this.closeCreateOrganizationForm}
+                onCreate={this.handleCreateOrganization}
+              />
+            )}
           </li>
         )}
       </Dropdown>
