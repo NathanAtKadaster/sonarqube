@@ -80,6 +80,7 @@ export interface Component {
   qualifier: string;
   refKey?: string;
   version?: string;
+  visibility?: string;
 }
 
 interface ComponentConfiguration {

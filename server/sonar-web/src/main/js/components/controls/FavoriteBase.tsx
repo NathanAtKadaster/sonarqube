@@ -82,7 +82,7 @@ export default class FavoriteBase extends React.PureComponent<Props, State> {
   render() {
     return (
       <a
-        className={classNames('link-no-underline', this.props.className)}
+        className={classNames('display-inline-block', 'link-no-underline', this.props.className)}
         href="#"
         onClick={this.toggleFavorite}>
         <FavoriteIcon favorite={this.state.favorite} />

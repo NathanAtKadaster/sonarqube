@@ -2,7 +2,7 @@
 
 exports[`should render favorite 1`] = `
 <a
-  className="link-no-underline"
+  className="display-inline-block link-no-underline"
   href="#"
   onClick={[Function]}
 >
@@ -14,7 +14,7 @@ exports[`should render favorite 1`] = `
 
 exports[`should render not favorite 1`] = `
 <a
-  className="link-no-underline"
+  className="display-inline-block link-no-underline"
   href="#"
   onClick={[Function]}
 >
