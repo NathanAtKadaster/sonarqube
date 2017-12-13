@@ -64,14 +64,16 @@ public class PluginsTest {
     // FIXME cobol is disabled as latest release is not using new license manager new CobolCheck(),
     // FIXME css plugin is temporary disabled as for the moment incompatible with the web plugin
     // new CssCheck(),
-    new FlexCheck(),
+    // FIXME needs to be compatible with SQ API 5.6+
+    //new FlexCheck(),
     new GroovyCheck(),
     new JavaCheck(),
     new JavascriptCheck(),
     new PhpCheck(),
     // FIXME pli is disabled as latest release is not using new license manager new PliCheck(),
     // FIXME plsql is disabled as latest release is not using new license manager  new PlsqlCheck(),
-    new PythonCheck(),
+    // FIXME needs to be compatible with SQ API 5.6+
+    //new PythonCheck(),
     // FIXME rpg is disabled as latest release is not using new license manager new RpgCheck(),
     // FIXME swift is disabled as latest release is not using new license manager new SwiftCheck(),
     // SONAR-7618 Visual Basic 2.2 not compatible with CE not loading @ServerSide
@@ -86,22 +88,28 @@ public class PluginsTest {
       .setZipFile(byWildcardMavenFilename(new File("../sonar-application/target"), "sonar*.zip").getFile());
 
     // FIXME JSON plugin is temporarily disabled as for the moment the github repo doesn't exist anymore installPlugin(builder, "JSON");;
-    installPlugin(builder, "Sonargraph");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "Sonargraph");
     // FIXME abap is disabled as latest release is not using new license manager installPlugin(builder, "abap");
     // FIXME AEM Rules plugin is disabled because it is no more compatible with SonarQube 6.4 (ClassNotFoundException: com.google.common.base.Functions) installPlugin(builder, "aemrules");
-    installPlugin(builder, "android");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "android");
     installPlugin(builder, "authbitbucket");
     installPlugin(builder, "authgithub");
-    installPlugin(builder, "checkstyle");
-    installPlugin(builder, "clover");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "checkstyle");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "clover");
     // FIXME cobol is disabled as latest release is not using new license manager installPlugin(builder, "cobol");
-    installPlugin(builder, "codecrackercsharp");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "codecrackercsharp");
     // FIXME cpp is disabled as latest release is not using new license manager installPlugin(builder, "cpp");
     installPlugin(builder, "csharp");
     // FIXME css plugin is temporarily disabled as for the moment incompatible with the web plugin installPlugin(builder, "css");
     // FIXME erlang plugin is temporarily disabled because it is not compatible with SQ 6.4 until usage of Colorizer API is removed
     // FIXME findbugs plugin is temporarily disabled because it is not compatible with SQ 6.4 until usage of Colorizer API is removed
-    installPlugin(builder, "flex");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "flex");
     installPlugin(builder, "github");
     installPlugin(builder, "googleanalytics");
     installPlugin(builder, "groovy");
@@ -120,35 +128,46 @@ public class PluginsTest {
     installPlugin(builder, "l10nru");
     installPlugin(builder, "l10nzh");
     installPlugin(builder, "ldap");
-    installPlugin(builder, "lua");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "lua");
     installPlugin(builder, "php");
     installPlugin(builder, "pitest");
     // SONAR-7618 SonarPLI release 1.5.0.702 not compatible with CE not loading @ServerSide. To be reset to LATEST_RELEASE as soon as SonarPLI 1.5.1 is released.
     // FIXME pli is disabled as latest release is not using new license manager installPlugin(builder, new URL("https://sonarsource.bintray.com/CommercialDistribution/sonar-pli-plugin/sonar-pli-plugin-1.5.1.872.jar"));
     // SONAR-7618 SonarPLSQL 2.9.0.901 not compatible with CE not loading @ServerSide. To be reset to LATEST_RELEASE as soon as SonarPLSQL 2.9.1 is released.
     // FIXME plsql is disabled as latest release is not using new license manager installPlugin(builder, new URL("https://sonarsource.bintray.com/CommercialDistribution/sonar-plsql-plugin/sonar-plsql-plugin-2.9.1.1051.jar"));
-    installPlugin(builder, "pmd");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "pmd");
     // FIXME puppet plugin is temporarily disabled because it is not compatible with SQ 6.4 until usage of Colorizer API is removed
-    installPlugin(builder, "python");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "python");
     installPlugin(builder, "rci");
     // FIXME rpg is disabled as latest release is not using new license manager installPlugin(builder, "rpg");
-    installPlugin(builder, "scmclearcase");
-    installPlugin(builder, "scmcvs");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmclearcase");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmcvs");
     installPlugin(builder, "scmgit");
-    installPlugin(builder, "scmjazzrtc");
-    installPlugin(builder, "scmmercurial");
-    installPlugin(builder, "scmperforce");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmjazzrtc");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmmercurial");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmperforce");
     installPlugin(builder, "scmsvn");
-    installPlugin(builder, "scmtfvc");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "scmtfvc");
     installPlugin(builder, "softvis3d");
-    installPlugin(builder, "sonargraphintegration");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "sonargraphintegration");
     installPlugin(builder, "status");
     // FIXME swift is disabled as latest release is not using new license manager installPlugin(builder, "swift");
     // SONAR-7618 Visual Basic 2.2 not compatible with CE not loading @ServerSide
     // installPlugin(builder, "vb");
     // FIXME vbnet is disabled as latest release is not using new license manager installPlugin(builder, "vbnet");
     installPlugin(builder, "web");
-    installPlugin(builder, "xanitizer");
+    // FIXME needs to be compatible with SQ API 5.6+
+    //installPlugin(builder, "xanitizer");
     installPlugin(builder, "xml");
 
     activateLicenses(builder);
