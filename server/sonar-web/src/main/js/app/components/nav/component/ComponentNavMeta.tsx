@@ -23,6 +23,7 @@ import { Branch, Component, CurrentUser, isLoggedIn } from '../../../types';
 import BranchStatus from '../../../../components/common/BranchStatus';
 import DateTimeFormatter from '../../../../components/intl/DateTimeFormatter';
 import Favorite from '../../../../components/controls/Favorite';
+import HomePageSelect from '../../../../components/controls/HomePageSelect';
 import Tooltip from '../../../../components/controls/Tooltip';
 import { isShortLivingBranch } from '../../../../helpers/branches';
 import { translate } from '../../../../helpers/l10n';
@@ -39,6 +40,7 @@ interface Props extends StateProps {
 
 export function ComponentNavMeta({ branch, component, currentUser }: Props) {
   const shortBranch = branch && isShortLivingBranch(branch);
+  const mainBranch = !branch || branch.isMain;
 
   return (
     <div className="navbar-context-meta">
@@ -55,11 +57,16 @@ export function ComponentNavMeta({ branch, component, currentUser }: Props) {
             </div>
           </Tooltip>
         )}
-      {isLoggedIn(currentUser) && (
-        <div className="huge-spacer-left">
-          <Favorite component={component.key} favorite={Boolean(component.isFavorite)} />
-        </div>
-      )}
+      {isLoggedIn(currentUser) &&
+        mainBranch && (
+          <div className="navbar-context-meta-secondary">
+            <Favorite component={component.key} favorite={Boolean(component.isFavorite)} />
+            <HomePageSelect
+              className="spacer-left"
+              currentPage={{ type: 'project', key: component.key }}
+            />
+          </div>
+        )}
       {shortBranch && <BranchStatus branch={branch!} />}
     </div>
   );

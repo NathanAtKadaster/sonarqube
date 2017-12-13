@@ -43,6 +43,13 @@
   text-align: right;
 }
 
+.navbar-context-meta-secondary {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  padding: 0 20px;
+}
+
 .navbar-context-description {
   display: inline-block;
   line-height: var(--controlHeight);

@@ -19,6 +19,7 @@
  */
 import * as React from 'react';
 import { Organization } from '../../../app/types';
+import HomePageSelect from '../../../components/controls/HomePageSelect';
 import { translate } from '../../../helpers/l10n';
 
 interface Props {
@@ -37,6 +38,9 @@ export default function OrganizationNavigationMeta({ organization }: Props) {
       )}
       <div className="text-muted">
         <strong>{translate('organization.key')}:</strong> {organization.key}
+      </div>
+      <div className="navbar-context-meta-secondary">
+        <HomePageSelect currentPage={{ type: 'organization', key: organization.key }} />
       </div>
     </div>
   );

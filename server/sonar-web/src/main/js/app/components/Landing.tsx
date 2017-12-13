@@ -20,8 +20,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentUser, getGlobalSettingValue } from '../../store/rootReducer';
 import { CurrentUser, isLoggedIn } from '../types';
+import { getCurrentUser, getGlobalSettingValue } from '../../store/rootReducer';
+import { getHomePageUrl } from '../../helpers/urls';
 
 interface Props {
   currentUser: CurrentUser;
@@ -35,8 +36,8 @@ class Landing extends React.PureComponent<Props> {
 
   componentDidMount() {
     const { currentUser, onSonarCloud } = this.props;
-    if (isLoggedIn(currentUser)) {
-      this.context.router.replace('/projects');
+    if (isLoggedIn(currentUser) && currentUser.homepage) {
+      this.context.router.replace(getHomePageUrl(currentUser.homepage));
     } else if (onSonarCloud) {
       window.location.href = 'https://about.sonarcloud.io';
     } else {
